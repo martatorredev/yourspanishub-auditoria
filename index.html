@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría Web – Your Spanish Hub | Marta Torre</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #000033;
+  --green: #33ff99;
+  --cyan: #33ccff;
+  --violet: #6666ff;
+  --pink: #ff9999;
+  --yellow: #ffcc00;
+  --white: #ffffff;
+  --bg: #000033;
+  --surface: #050540;
+  --surface2: #0a0a55;
+  --border: rgba(102,102,255,0.22);
+  --text: #e8eaf8;
+  --muted: #b8bcda;
+  --subtle: #8890bc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ── PIXEL DECORATION ── */
+.pixel-strip {
+  width: 100%;
+  height: 64px;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+.pixel-strip canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 38px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.nav-logo-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .08em;
+}
+
+.nav-right a {
+  color: var(--white);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-right a:hover { color: var(--green); }
+
+.nav-doc-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--white);
+  border-left: 1px solid var(--border);
+  padding-left: 20px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  padding: 72px 40px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text);
+  max-width: 580px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.hero-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-meta-item { display: flex; align-items: center; gap: 6px; }
+.hero-meta-item strong { color: var(--white); font-weight: 500; }
+.hero-meta-sep { width: 1px; height: 14px; background: var(--border); }
+
+/* ── WRAP ── */
+.wrap {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── SCORES ── */
+.scores-section {
+  padding: 52px 0 0;
+}
+
+.scores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 52px;
+}
+
+.sc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 12px;
+  text-align: center;
+  transition: border-color .2s, transform .15s;
+}
+.sc:hover { border-color: rgba(102,102,255,.5); transform: translateY(-1px); }
+
+.sv {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.sl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ok  { color: var(--green); }
+.warn { color: var(--yellow); }
+.err  { color: var(--pink); }
+.inf  { color: var(--cyan); }
+
+/* ── LIGHTHOUSE ── */
+.lh {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 28px 24px;
+  margin-bottom: 56px;
+}
+
+.lh-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.lh-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255,204,0,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.lh-ttl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.lh-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: .06em;
+}
+
+.lh-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.lh-dl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.lh-circs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.lhc { text-align: center; }
+
+.ring {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 3px solid;
+}
+.ring.e { border-color: var(--pink); color: var(--pink); }
+.ring.w { border-color: var(--yellow); color: var(--yellow); }
+.ring.g { border-color: var(--green); color: var(--green); }
+.rl { font-size: 1rem; color: var(--text); font-family: 'Space Grotesk', sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+
+.lh-ms { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.lhm {
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 7px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lhm-n { font-size: 1rem; color: var(--text); }
+.lhm-v { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; }
+
+.lh-note {
+  font-size: 1rem;
+  color: var(--text);
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  line-height: 1.6;
+}
+.lh-note strong { color: var(--white); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 56px; }
+
+.sec-hd {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sec-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+.i-sec  { background: rgba(255,153,153,.12); }
+.i-priv { background: rgba(102,102,255,.12); }
+.i-cook { background: rgba(255,204,0,.12); }
+.i-acc  { background: rgba(51,204,255,.12); }
+.i-plug { background: rgba(51,255,153,.12); }
+.i-perf { background: rgba(255,204,0,.10); }
+.i-rec  { background: rgba(102,102,255,.10); }
+
+.sec-n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -.01em;
+}
+
+/* ── ALERT ── */
+.al {
+  border-radius: 8px;
+  padding: 11px 16px;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 16px;
+  border-left: 3px solid;
+  line-height: 1.6;
+}
+.al-e  { background: rgba(255,153,153,.06); border-color: var(--pink); }
+.al-w  { background: rgba(255,204,0,.06);   border-color: var(--yellow); }
+.al-g  { background: rgba(51,255,153,.06);  border-color: var(--green); }
+.al strong { color: var(--white); }
+
+/* ── FINDINGS ── */
+.findings { display: flex; flex-direction: column; gap: 8px; }
+
+.fd {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px 18px 15px 16px;
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  gap: 14px;
+  align-items: start;
+  transition: background .15s;
+}
+.fd:hover { background: var(--surface2); }
+
+.dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.d-ok { background: var(--green);  box-shadow: 0 0 6px rgba(51,255,153,.6); }
+.d-w  { background: var(--yellow); box-shadow: 0 0 6px rgba(255,204,0,.6); }
+.d-e  { background: var(--pink);   box-shadow: 0 0 6px rgba(255,153,153,.6); }
+.d-i  { background: var(--cyan);   box-shadow: 0 0 6px rgba(51,204,255,.6); }
+
+.fb h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffcc00;
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+.fb p { font-size: 1rem; color: #e8eaf8; line-height: 1.65; }
+.fb p strong { color: #ffffff; font-weight: 600; }
+.fb p a { color: #33ccff; }
+.lh-note { color: #e8eaf8; }
+.lh-note strong { color: #ffcc00; }
+.fb code {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--cyan);
+  background: rgba(51,204,255,.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.act {
+  font-size: 1rem;
+  color: var(--cyan);
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(102,102,255,.12);
+  font-style: italic;
+}
+.src {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #a89fff;
+  margin-bottom: 3px;
+}
+
+/* ── BADGE ── */
+.b {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.b-ok { background: rgba(51,255,153,.12); color: var(--green); }
+.b-w  { background: rgba(255,204,0,.12);  color: var(--yellow); }
+.b-e  { background: rgba(255,153,153,.12); color: var(--pink); }
+.b-i  { background: rgba(51,204,255,.12); color: var(--cyan); }
+
+/* ── TABLES ── */
+.tw {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(102,102,255,.07);
+  vertical-align: middle;
+  color: var(--text);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface2); }
+.pn { font-weight: 600; color: var(--white); font-size: 1rem; }
+.pv { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: var(--text); }
+.cn { font-family: 'Space Grotesk', sans-serif; color: var(--cyan); font-size: 1rem; }
+.plug-inactive td { opacity: .65; }
+
+/* ── RECS ── */
+.recs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: 10px;
+}
+.rec {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  transition: border-color .2s;
+}
+.rec:hover { border-color: rgba(102,102,255,.4); }
+.rp {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.p-a { color: #ffb3b3; }
+.p-m { color: #ffe066; }
+.p-b { color: #66ffbb; }
+.rec h3 { font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 5px; }
+.rec p  { font-size: 1rem; color: var(--text); line-height: 1.6; }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  padding: 40px 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.ft-brand img {
+  height: 36px;
+  width: auto;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.ft-links {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  line-height: 2;
+}
+.ft-links a {
+  color: var(--cyan);
+  text-decoration: none;
+  display: block;
+}
+.ft-links a:hover { color: var(--green); }
+
+.ft-right {
+  text-align: right;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.9;
+}
+.ft-right strong { color: var(--white); font-weight: 500; }
+.ft-disclaimer {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ── PIXEL DECORATION (canvas-based) ── */
+#pixel-canvas {
+  display: block;
+  width: 100%;
+  height: 56px;
+}
+
+@media (max-width: 680px) {
+  .fd { grid-template-columns: 8px 1fr; }
+  .b { display: none; }
+  .lh-cols { grid-template-columns: 1fr; }
+  nav { padding: 0 16px; height: 60px; }
+  .nav-right a:first-child { display: none; }
+  .nav-doc-label { display: none; }
+  .hero { padding: 40px 20px 36px; }
+  .wrap { padding: 0 16px; }
+  .site-footer { padding: 28px 16px 36px; }
+  .ft-right { text-align: left; }
+  .scores { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .nav-right { gap: 12px; }
+  .nav-logo-name { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 94 93" fill="none" aria-label="Marta Torre">
+      <path d="M16.1437 23.6029C20.9444 23.6029 24.8362 19.7087 24.8362 14.905C24.8362 10.1012 20.9444 6.20703 16.1437 6.20703C11.3429 6.20703 7.45117 10.1012 7.45117 14.905C7.45117 19.7087 11.3429 23.6029 16.1437 23.6029Z" fill="#DCE4EF"/>
+      <path d="M77.8558 23.603C82.6565 23.603 86.5483 19.7088 86.5483 14.905C86.5483 10.1013 82.6565 6.20711 77.8558 6.20711C73.0551 6.20711 69.1633 10.1013 69.1633 14.905C69.1633 19.7088 73.0551 23.603 77.8558 23.603Z" fill="#DCE4EF"/>
+      <path d="M27.2259 54.6817L23.9217 51.3754V31.4871L37.1893 44.763L27.2259 54.6817Z" fill="#725BFF"/>
+      <path d="M67.0285 54.6817L70.2818 51.4263L70.3326 31.4871L57.0651 44.763L67.0285 54.6817Z" fill="#FF7480"/>
+      <path d="M47.1312 54.7101L37.1747 64.6729L47.1313 74.6357L57.0878 64.6729L47.1312 54.7101Z" fill="#28E8A3"/>
+      <path d="M57.086 44.733L47.1294 54.6958L57.086 64.6586L67.0425 54.6958L57.086 44.733Z" fill="#FBCE13"/>
+      <path d="M37.1637 44.7508L27.2071 54.7136L37.1637 64.6764L47.1203 54.7136L37.1637 44.7508Z" fill="#11D9ED"/>
+      <path d="M85.4298 31.4871H70.2814V81.7928H85.4298V31.4871Z" fill="#DCE4EF"/>
+      <path d="M23.9217 31.4871H8.77318V81.7928H23.9215L23.9217 31.4871Z" fill="#DCE4EF"/>
+    </svg>
+    <span class="nav-logo-name">Marta Torre</span>
+  </div>
+  <div class="nav-right">
+    <a href="https://martatorre.dev">martatorre.dev</a>
+    <a href="mailto:hola@martatorre.dev">hola@martatorre.dev</a>
+    <div class="nav-doc-label">Auditoría web</div>
+  </div>
+</nav>
+
+<!-- PIXEL TOP STRIP -->
+<canvas id="pixel-canvas-top" height="56" style="display:block;width:100%;background:var(--navy);"></canvas>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">// Informe de mantenimiento web · Auditoría técnica</div>
+  <h1>Estado de <span>Your Spanish Hub</span></h1>
+  <p class="hero-sub">Revisión completa de seguridad, privacidad, cookies, rendimiento, accesibilidad y plugins. Datos obtenidos de Site Health, Lighthouse y panel de administración.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>yourspanishhub.com</strong></div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">WordPress + WooCommerce</div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">LearnDash · Polylang · Cloudflare</div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item"><strong style="color:var(--yellow)">PHP 8.2.29 ⚠</strong></div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">16 abril 2026</div>
+  </div>
+</div>
+
+<!-- PIXEL BOTTOM STRIP -->
+<canvas id="pixel-canvas-bot" height="56" style="display:block;width:100%;background:var(--navy);"></canvas>
+
+
+<div class="wrap">
+
+<!-- SCORES -->
+<div class="scores-section">
+<div class="scores">
+  <div class="sc"><div class="sv err">8</div><div class="sl">Issues seguridad</div></div>
+  <div class="sc"><div class="sv err">4</div><div class="sl">Issues privacidad</div></div>
+  <div class="sc"><div class="sv warn">4</div><div class="sl">Issues cookies</div></div>
+  <div class="sc"><div class="sv warn">4</div><div class="sl">Issues accesib.</div></div>
+  <div class="sc"><div class="sv err">58</div><div class="sl">Lighthouse móvil</div></div>
+  <div class="sc"><div class="sv warn">92</div><div class="sl">Lighthouse desktop</div></div>
+  <div class="sc"><div class="sv err">4</div><div class="sl">Plugins inactivos</div></div>
+  <div class="sc"><div class="sv warn">3</div><div class="sl">Updates pendientes</div></div>
+</div>
+</div>
+
+<!-- LIGHTHOUSE -->
+<div class="lh">
+  <div class="lh-header">
+    <div class="lh-icon">⚡</div>
+    <div>
+      <div class="lh-ttl">Lighthouse — Resultados por dispositivo</div>
+      <div class="lh-sub">Captura del 16/04/2026 · Lighthouse 13.0.1</div>
+    </div>
+  </div>
+  <div class="lh-cols">
+    <div>
+      <div class="lh-dl">📱 Móvil · emulado 4G lenta</div>
+      <div class="lh-circs">
+        <div class="lhc"><div class="ring e">58</div><div class="rl">Rendim.</div></div>
+        <div class="lhc"><div class="ring g">92</div><div class="rl">Accesib.</div></div>
+        <div class="lhc"><div class="ring g">100</div><div class="rl">Práct.</div></div>
+        <div class="lhc"><div class="ring g">100</div><div class="rl">SEO</div></div>
+      </div>
+      <div class="lh-ms">
+        <div class="lhm"><span class="lhm-n">FCP</span><span class="lhm-v err">6,7 s</span></div>
+        <div class="lhm"><span class="lhm-n">LCP</span><span class="lhm-v err">9,0 s</span></div>
+        <div class="lhm"><span class="lhm-n">TBT</span><span class="lhm-v ok">130 ms</span></div>
+        <div class="lhm"><span class="lhm-n">CLS</span><span class="lhm-v ok">0</span></div>
+        <div class="lhm"><span class="lhm-n">SI</span><span class="lhm-v err">6,7 s</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="lh-dl">🖥️ Desktop</div>
+      <div class="lh-circs">
+        <div class="lhc"><div class="ring w">92</div><div class="rl">Rendim.</div></div>
+        <div class="lhc"><div class="ring g">100</div><div class="rl">Accesib.</div></div>
+        <div class="lhc"><div class="ring g">100</div><div class="rl">Práct.</div></div>
+        <div class="lhc"><div class="ring w">66</div><div class="rl">SEO</div></div>
+      </div>
+      <div class="lh-ms">
+        <div class="lhm"><span class="lhm-n">FCP</span><span class="lhm-v warn">4,5 s</span></div>
+        <div class="lhm"><span class="lhm-n">LCP</span><span class="lhm-v warn">6,3 s</span></div>
+        <div class="lhm"><span class="lhm-n">TBT</span><span class="lhm-v ok">70 ms</span></div>
+        <div class="lhm"><span class="lhm-n">CLS</span><span class="lhm-v ok">0.026</span></div>
+        <div class="lhm"><span class="lhm-n">SI</span><span class="lhm-v warn">4,5 s</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="lh-note">
+    Principales causas: <strong>recursos bloqueando el renderizado (−5,47 s estimados)</strong> · CSS sin usar (101 KiB) · imágenes sin optimizar (809 KiB) · 2 tareas largas en hilo principal.
+  </div>
+</div>
+
+
+<!-- 01 SEGURIDAD -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-sec">🔒</div>
+    <div><div class="sec-n">01 / Seguridad</div><h2>Seguridad del servidor y WordPress</h2></div>
+  </div>
+  <div class="al al-e"><strong>Site Health</strong> detecta 5 mejoras de seguridad pendientes · Really Simple Security activo pero sin configurar completamente.</div>
+  <div class="findings">
+
+    <div class="fd">
+      <div class="dot d-ok"></div>
+      <div class="fb"><h3>HTTPS + Cloudflare activos</h3><p>Certificado SSL válido y HTTPS forzado. Cloudflare como proxy aporta protección DDoS básica y ocultación de la IP real del servidor.</p></div>
+      <span class="b b-ok">OK</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Panel admin · confirmado</div>
+        <h3>JetEngine sin licencia — v3.6.3 instalada, v3.8.8 disponible</h3>
+        <p>La actualización automática está bloqueada por licencia inactiva. JetEngine gestiona CPTs y meta fields críticos. Estar 2+ versiones atrás sin posibilidad de actualizar es un riesgo real de seguridad.</p>
+        <p class="act">→ Verificar con la cliente si la licencia está pagada. Si no, renovarla en Crocoblock o actualizar manualmente desde su cuenta.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Panel admin · confirmado</div>
+        <h3>4 plugins inactivos instalados</h3>
+        <p>Desactivados pero no eliminados: <code>LearnDash Licensing & Management</code>, <code>LearnDash LMS - Course Grid</code>, <code>reCaptcha by BestWebSoft</code> y <code>WooCommerce Blocks</code>. Sus archivos permanecen en servidor y pueden contener vulnerabilidades sin parchear.</p>
+        <p class="act">→ Course Grid + Licensing → eliminar. reCaptcha → reactivar y configurar, o eliminar. WooCommerce Blocks → confirmar necesidad con la cliente.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>Cabeceras HTTP de seguridad no instaladas</h3>
+        <p>Faltan: <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code> y <code>Content-Security-Policy</code>. El sitio queda expuesto a ataques XSS y clickjacking.</p>
+        <p class="act">→ Implementar vía Cloudflare (Transform Rules → Managed Headers) o activar en Really Simple Security → Security Headers.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>Sin autenticación de dos factores (2FA)</h3>
+        <p>Really Simple Security incluye 2FA pero requiere activación explícita. El acceso al panel de administración depende actualmente solo de usuario y contraseña.</p>
+        <p class="act">→ Really Simple Security → Two-Factor Authentication → Enable. Al menos para la cuenta administradora principal.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>Sin protección contra fuerza bruta en el login</h3>
+        <p>Login Protection disponible en Really Simple Security pero no configurado. El reCaptcha que cubría esto está inactivo. Sin límite de intentos, el login es vulnerable a ataques automatizados.</p>
+        <p class="act">→ Really Simple Security → Login Protection → activar. O reactivar y configurar el plugin reCaptcha.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>Sin firewall de aplicación web (WAF)</h3>
+        <p>Cloudflare ofrece protección de red pero no un WAF específico para WordPress. Site Health recomienda uno para bloquear explotación de vulnerabilidades conocidas del CMS.</p>
+        <p class="act">→ Activar WAF en Really Simple Security Pro o en Cloudflare si el plan lo incluye.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Recomendación adicional</div>
+        <h3>URL de acceso al panel estándar (<code>/wp-admin</code>)</h3>
+        <p>URL pública y conocida por cualquier bot. Cambiarla reduce significativamente los intentos de acceso automatizados.</p>
+        <p class="act">→ Really Simple Security Pro o plugin WPS Hide Login (gratuito).</p>
+      </div>
+      <span class="b b-w">Recomendado</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Panel admin</div>
+        <h3>Really Simple Security desactualizado: 9.5.8 → 9.5.9</h3>
+        <p>Actualización menor pendiente en el plugin de seguridad principal. Mantenerlo al día es especialmente crítico.</p>
+        <p class="act">→ WP Admin → Plugins → Really Simple Security → Update now.</p>
+      </div>
+      <span class="b b-w">Actualizar</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 02 PRIVACIDAD -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-priv">🛡️</div>
+    <div><div class="sec-n">02 / Privacidad</div><h2>Cumplimiento RGPD y documentación legal</h2></div>
+  </div>
+  <div class="findings">
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <h3>Política de cookies desactualizada — última revisión mayo 2021</h3>
+        <p>Han cambiado los servicios activos desde entonces: LearnDash, WooCommerce Subscriptions, RedSys, Source Buster JS. La política no refleja la realidad actual de los tratamientos.</p>
+        <p class="act">→ Actualizar con todos los servicios activos. Revisión mínima recomendada: anual o tras cambios relevantes.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <h3>Programa de afiliados (WP Affiliate) sin documentar en política de privacidad</h3>
+        <p>Mencionado en la política de cookies pero sin sección específica en la política de privacidad con base jurídica, finalidad y plazo de conservación.</p>
+        <p class="act">→ Añadir sección de afiliados en política de privacidad con base legal y periodo de retención.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <h3>Pasarela RedSys: verificar mención como encargado de tratamiento</h3>
+        <p>El sitio usa <code>WooCommerce Servired/RedSys</code> para procesar pagos. La cesión de datos de pago debe estar documentada con base legal en la política de privacidad.</p>
+        <p class="act">→ Verificar que la política menciona RedSys y la base legal de la cesión.</p>
+      </div>
+      <span class="b b-w">Verificar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <h3>Formulario de booking: verificar checkbox RGPD desvinculado</h3>
+        <p>El formulario de reserva de clase gratuita recopila datos personales. Confirmar que el checkbox de consentimiento no está pre-marcado y es independiente del envío.</p>
+        <p class="act">→ Auditar formulario en vivo y confirmar comportamiento del checkbox.</p>
+      </div>
+      <span class="b b-w">Verificar</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 03 COOKIES -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-cook">🍪</div>
+    <div><div class="sec-n">03 / Cookies</div><h2>Gestión y cumplimiento de cookies</h2></div>
+  </div>
+  <div class="findings">
+
+    <div class="fd">
+      <div class="dot d-ok"></div>
+      <div class="fb"><h3>Banner de consentimiento activo con categorías correctas</h3><p>CMP con categorías Funcional, Preferencias, Estadísticas y Marketing. Opciones Aceptar, Denegar y Preferencias visibles. Cumple requisitos básicos del RGPD.</p></div>
+      <span class="b b-ok">OK</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <h3>Cookies <code>sbjs_*</code> activas antes del consentimiento</h3>
+        <p>8 cookies de Source Buster JS activas en sesión sin decisión del usuario. Rastrean el origen del tráfico (UTM, referrer, canal) y requieren consentimiento previo como cookies estadísticas o de marketing.</p>
+        <p class="act">→ Configurar el CMP para bloquear Source Buster JS hasta consentimiento. Si no se usan los datos, valorar eliminar la librería y usar GA4 nativo.</p>
+      </div>
+      <span class="b b-e">Urgente</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <h3><code>pll_language</code> no documentada en política de cookies</h3>
+        <p>Cookie de Polylang (preferencia de idioma). Es técnica y legítima pero debe aparecer en la tabla de cookies propias.</p>
+        <p class="act">→ Añadir entrada en la política de cookies.</p>
+      </div>
+      <span class="b b-w">Menor</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <h3><code>sbjs_udata</code>: clasificación a confirmar</h3>
+        <p>Almacena datos de comportamiento. Puede ser estadística o marketing según configuración. En ambos casos requiere consentimiento previo.</p>
+        <p class="act">→ Confirmar clasificación y asegurar bloqueo antes del consentimiento.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+  </div>
+
+  <div style="margin-top:20px;">
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Cookies detectadas en sesión</div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Nombre</th><th>Origen</th><th>Tipo</th><th>Duración</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td><span class="cn">pll_language</span></td><td>Polylang</td><td>Técnica</td><td>1 año</td><td><span class="b b-ok">OK</span></td></tr>
+          <tr><td><span class="cn">sbjs_current</span></td><td>Source Buster JS</td><td>Estadística</td><td>Sesión</td><td><span class="b b-w">Revisar</span></td></tr>
+          <tr><td><span class="cn">sbjs_current_add</span></td><td>Source Buster JS</td><td>Estadística</td><td>Sesión</td><td><span class="b b-w">Revisar</span></td></tr>
+          <tr><td><span class="cn">sbjs_first</span></td><td>Source Buster JS</td><td>Estadística</td><td>Sesión</td><td><span class="b b-w">Revisar</span></td></tr>
+          <tr><td><span class="cn">sbjs_first_add</span></td><td>Source Buster JS</td><td>Estadística</td><td>Sesión</td><td><span class="b b-w">Revisar</span></td></tr>
+          <tr><td><span class="cn">sbjs_migrations</span></td><td>Source Buster JS</td><td>Técnica</td><td>Sesión</td><td><span class="b b-i">Neutral</span></td></tr>
+          <tr><td><span class="cn">sbjs_session</span></td><td>Source Buster JS</td><td>Estadística</td><td>Sesión</td><td><span class="b b-w">Revisar</span></td></tr>
+          <tr><td><span class="cn">sbjs_udata</span></td><td>Source Buster JS</td><td>Marketing?</td><td>Sesión</td><td><span class="b b-e">Urgente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- 04 ACCESIBILIDAD -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-acc">♿</div>
+    <div><div class="sec-n">04 / Accesibilidad</div><h2>Accesibilidad (Lighthouse + WCAG 2.1)</h2></div>
+  </div>
+  <div class="al al-g">Lighthouse detecta <strong>92/100 en accesibilidad automática</strong>. Hay 3 fallos concretos y 10 puntos adicionales que requieren revisión manual.</div>
+  <div class="findings">
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Lighthouse · automático</div>
+        <h3>Contraste insuficiente en elementos de color</h3>
+        <p>El par texto/fondo no alcanza el ratio mínimo 4.5:1 (WCAG AA) en algunos elementos. Probablemente afecta a texto sobre botones en tonos verdes o amarillos.</p>
+        <p class="act">→ Verificar con WebAIM Contrast Checker. Ajustar tono o contraste en los elementos detectados.</p>
+      </div>
+      <span class="b b-e">Fallo</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Lighthouse · automático</div>
+        <h3>Enlaces sin nombre accesible</h3>
+        <p>Se detectan enlaces sin texto visible ni <code>aria-label</code>. Los lectores de pantalla no pueden describir su destino.</p>
+        <p class="act">→ Añadir aria-label descriptivo a todos los enlaces con íconos sin texto adyacente.</p>
+      </div>
+      <span class="b b-e">Fallo</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Lighthouse · automático</div>
+        <h3>Atributos alt en imágenes ausentes o redundantes</h3>
+        <p>Algunas imágenes tienen alt ausente o idéntico al texto adyacente. Afecta a imágenes de productos, fotos de equipo y logos.</p>
+        <p class="act">→ Alt vacío para imágenes decorativas; alt descriptivo y único para imágenes informativas.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Lighthouse · automático</div>
+        <h3>Jerarquía de encabezados no secuencial</h3>
+        <p>Los headings (h1, h2, h3…) no siguen orden descendente en alguna parte del sitio, dificultando la navegación con lector de pantalla.</p>
+        <p class="act">→ Usar la extensión Headings Map (Chrome) para visualizar la estructura y corregir los saltos de nivel.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-ok"></div>
+      <div class="fb"><h3>Skip to content presente</h3><p>El sitio incluye enlace "Skip to content" al inicio del HTML. Buena práctica para navegación por teclado.</p></div>
+      <span class="b b-ok">OK</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 05 PLUGINS -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-plug">🧩</div>
+    <div><div class="sec-n">05 / Plugins</div><h2>Estado de plugins instalados</h2></div>
+  </div>
+  <div class="al al-e">
+    <strong>4 plugins inactivos</strong> (riesgo de seguridad directo) · <strong>JetEngine bloqueado por licencia</strong> · LearnDash con salto de versión mayor pendiente.
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Plugin</th><th>Versión instalada</th><th>Última disponible</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pn">JetEngine</span><br><span style="font-size:1rem;color:var(--text)">Crocoblock · CPTs, taxonomías, meta fields</span></td>
+          <td><span class="pv">3.6.3</span></td>
+          <td><span style="color:var(--pink);font-family:'Space Grotesk',sans-serif;font-size:1rem;">3.8.8 — licencia inactiva ⚠</span></td>
+          <td><span class="b b-e">Urgente</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">LearnDash LMS</span><br><span style="font-size:1rem;color:var(--text)">LMS principal del sitio</span></td>
+          <td><span class="pv">4.25.8.1</span></td>
+          <td><span style="color:var(--pink);font-family:'Space Grotesk',sans-serif;font-size:1rem;">5.0.5 — versión mayor</span></td>
+          <td><span class="b b-e">Revisar + Actualizar</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">WooCommerce</span><br><span style="font-size:1rem;color:var(--text)">Tienda y gestión de pagos</span></td>
+          <td><span class="pv">10.6.2</span></td>
+          <td><span style="color:var(--yellow);font-family:'Space Grotesk',sans-serif;font-size:1rem;">10.7.0</span></td>
+          <td><span class="b b-w">Actualizar</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Really Simple Security</span><br><span style="font-size:1rem;color:var(--text)">Plugin de seguridad principal</span></td>
+          <td><span class="pv">9.5.8</span></td>
+          <td><span style="color:var(--yellow);font-family:'Space Grotesk',sans-serif;font-size:1rem;">9.5.9</span></td>
+          <td><span class="b b-w">Actualizar</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">WooCommerce Subscriptions</span></td>
+          <td><span class="pv">4.0.2</span></td>
+          <td>—</td>
+          <td><span class="b b-ok">Activo · OK</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">WooCommerce Servired/RedSys</span><br><span style="font-size:1rem;color:var(--text)">Pasarela de pago española</span></td>
+          <td><span class="pv">30.3.1</span></td>
+          <td>—</td>
+          <td><span class="b b-ok">Activo · OK</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">JP Validar Email Facturación</span><br><span style="font-size:1rem;color:var(--text)">Plugin personalizado · Javier de Pereda</span></td>
+          <td><span class="pv">1.0.0</span></td>
+          <td>—</td>
+          <td><span class="b b-i">Custom · OK</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Uncanny Toolkit for LearnDash</span></td>
+          <td><span class="pv">3.8.0.2</span></td>
+          <td>—</td>
+          <td><span class="b b-ok">Activo · OK</span></td>
+        </tr>
+        <tr class="plug-inactive">
+          <td><span class="pn" style="color:var(--text)">reCaptcha by BestWebSoft</span></td>
+          <td><span class="pv">1.86</span></td>
+          <td>—</td>
+          <td><span class="b b-e">Inactivo · Evaluar</span></td>
+        </tr>
+        <tr class="plug-inactive">
+          <td><span class="pn" style="color:var(--text)">LearnDash Licensing & Management</span></td>
+          <td><span class="pv">1.3.2</span></td>
+          <td>—</td>
+          <td><span class="b b-e">Inactivo · Eliminar</span></td>
+        </tr>
+        <tr class="plug-inactive">
+          <td><span class="pn" style="color:var(--text)">LearnDash LMS - Course Grid</span></td>
+          <td><span class="pv">2.0.11</span></td>
+          <td>—</td>
+          <td><span class="b b-e">Inactivo · Eliminar</span></td>
+        </tr>
+        <tr class="plug-inactive">
+          <td><span class="pn" style="color:var(--text)">WooCommerce Blocks</span></td>
+          <td><span class="pv">11.7.0</span></td>
+          <td>—</td>
+          <td><span class="b b-e">Inactivo · Evaluar</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- 06 RENDIMIENTO -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-perf">⚡</div>
+    <div><div class="sec-n">06 / Rendimiento</div><h2>Rendimiento y optimización</h2></div>
+  </div>
+  <div class="findings">
+
+    <div class="fd">
+      <div class="dot d-e"></div>
+      <div class="fb">
+        <div class="src">Lighthouse móvil</div>
+        <h3>Rendimiento móvil crítico: 58/100 — LCP 9,0 s</h3>
+        <p>El LCP en móvil es de 9 segundos, muy por encima del umbral "bueno" de 2,5 s. Causa principal: recursos que bloquean el renderizado con un ahorro estimado de <strong style="color:var(--white)">5,47 segundos</strong>.</p>
+        <p class="act">→ Diferir JS y CSS no crítico. Valorar WP Rocket o LiteSpeed Cache con defer de JS y CSS crítico inline.</p>
+      </div>
+      <span class="b b-e">Crítico</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Lighthouse</div>
+        <h3>Imágenes sin optimizar — ahorro estimado 809 KiB</h3>
+        <p>Imágenes que podrían comprimirse o convertirse a WebP/AVIF. El sitio usa lazy loading pero las imágenes no están optimizadas en origen.</p>
+        <p class="act">→ Activar conversión a WebP con ShortPixel, Imagify o WP Rocket. Revisar tamaños de subida en la Media Library.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Lighthouse</div>
+        <h3>CSS sin usar — 101 KiB eliminables</h3>
+        <p>CSS no necesario en el renderizado inicial que penaliza el tiempo de carga. Habitual en sitios con constructores de página.</p>
+        <p class="act">→ Activar CSS crítico inline y diferir el resto desde un plugin de rendimiento.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>PHP 8.2.29 — versión desactualizada</h3>
+        <p>PHP 8.3.x tiene soporte de seguridad activo y mejoras de rendimiento. WordPress recomienda actualizar.</p>
+        <p class="act">→ Solicitar actualización a PHP 8.3.x al hosting. Verificar compatibilidad de JetEngine y LearnDash antes de hacerlo en producción.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Site Health</div>
+        <h3>Sin caché de objetos persistente</h3>
+        <p>Sin Redis o Memcached, cada petición recalcula datos reutilizables. Relevante con WooCommerce + LearnDash + Subscriptions activos.</p>
+        <p class="act">→ Consultar con el hosting si Redis está disponible. Alternativa: activar object cache en WP Rocket.</p>
+      </div>
+      <span class="b b-w">Rendimiento</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-w"></div>
+      <div class="fb">
+        <div class="src">Inspección de código</div>
+        <h3>Doble URL de booking detectada</h3>
+        <p>Dos URLs para la misma página: <code>/book-a-trial-lesson/</code> (desktop) y <code>/nuevo-book-a-trial-lesson/</code> (móvil). Genera duplicidad y afecta al seguimiento de conversiones.</p>
+        <p class="act">→ Unificar a una URL con redirect 301 desde la antigua. Revisar Analytics antes de decidir cuál conservar.</p>
+      </div>
+      <span class="b b-w">Revisar</span>
+    </div>
+
+    <div class="fd">
+      <div class="dot d-ok"></div>
+      <div class="fb"><h3>CLS estable — sin saltos de diseño</h3><p>Cumulative Layout Shift en 0 (móvil) y 0.026 (desktop). Sin saltos visuales durante la carga.</p></div>
+      <span class="b b-ok">OK</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 07 PLAN DE ACCIÓN -->
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-ico i-rec">📋</div>
+    <div><div class="sec-n">07 / Plan de acción</div><h2>Recomendaciones priorizadas</h2></div>
+  </div>
+  <div class="recs">
+    <div class="rec"><div class="rp p-a">● Alta · Seguridad</div><h3>Resolver licencia JetEngine</h3><p>Verificar con la cliente o renovar en Crocoblock para desbloquear la actualización a 3.8.8.</p></div>
+    <div class="rec"><div class="rp p-a">● Alta · Seguridad</div><h3>Eliminar plugins inactivos</h3><p>Course Grid + Licensing → eliminar. reCaptcha → reactivar o eliminar. WooCommerce Blocks → evaluar.</p></div>
+    <div class="rec"><div class="rp p-a">● Alta · Seguridad</div><h3>Activar 2FA + login protection</h3><p>Really Simple Security lo incluye. Activar Two-Factor Auth y Login Protection desde su configuración.</p></div>
+    <div class="rec"><div class="rp p-a">● Alta · Seguridad</div><h3>Implementar cabeceras HTTP</h3><p>X-Frame-Options, X-Content-Type-Options, Referrer-Policy y CSP básico vía Cloudflare o RSS.</p></div>
+    <div class="rec"><div class="rp p-a">● Alta · Legal</div><h3>Actualizar política de cookies (2021)</h3><p>Incluir servicios actuales, fechas correctas y base legal vigente. Desactualizada 4+ años.</p></div>
+    <div class="rec"><div class="rp p-a">● Alta · Legal</div><h3>Bloquear sbjs_* hasta consentimiento</h3><p>Configurar CMP para que Source Buster JS no se ejecute hasta consentimiento explícito del usuario.</p></div>
+    <div class="rec"><div class="rp p-m">◐ Media · Plugins</div><h3>Actualizar LearnDash → 5.0.5</h3><p>Salto de versión mayor. Hacer backup completo y revisar changelog antes de actualizar.</p></div>
+    <div class="rec"><div class="rp p-m">◐ Media · Rendimiento</div><h3>Optimizar rendimiento móvil</h3><p>Diferir JS/CSS no crítico + imágenes a WebP. Objetivo: LCP &lt; 2,5 s en móvil (ahora en 9 s).</p></div>
+    <div class="rec"><div class="rp p-m">◐ Media · Seguridad</div><h3>Cambiar URL de /wp-admin</h3><p>WPS Hide Login (gratuito) o Really Simple Security Pro. Reduce intentos de acceso automatizados.</p></div>
+    <div class="rec"><div class="rp p-m">◐ Media · Legal</div><h3>Afiliados + RedSys en privacidad</h3><p>Documentar base jurídica y periodo de retención para el programa de afiliados y la pasarela de pago.</p></div>
+    <div class="rec"><div class="rp p-b">○ Baja · Accesibilidad</div><h3>Corregir contraste, alt text y headings</h3><p>3 fallos automáticos Lighthouse: contraste insuficiente, enlaces sin nombre y jerarquía de headings.</p></div>
+    <div class="rec"><div class="rp p-b">○ Baja · Rendimiento</div><h3>PHP 8.3 + object cache</h3><p>Solicitar actualización al hosting. Verificar compatibilidad de plugins antes de hacerlo en producción.</p></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- PIXEL BOTTOM -->
+<canvas id="pixel-canvas-footer" height="48" style="display:block;width:100%;background:transparent;margin-top:8px;"></canvas>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="ft-brand">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 94 93" fill="none">
+        <path d="M16.1437 23.6029C20.9444 23.6029 24.8362 19.7087 24.8362 14.905C24.8362 10.1012 20.9444 6.20703 16.1437 6.20703C11.3429 6.20703 7.45117 10.1012 7.45117 14.905C7.45117 19.7087 11.3429 23.6029 16.1437 23.6029Z" fill="#DCE4EF"/>
+        <path d="M77.8558 23.603C82.6565 23.603 86.5483 19.7088 86.5483 14.905C86.5483 10.1013 82.6565 6.20711 77.8558 6.20711C73.0551 6.20711 69.1633 10.1013 69.1633 14.905C69.1633 19.7088 73.0551 23.603 77.8558 23.603Z" fill="#DCE4EF"/>
+        <path d="M27.2259 54.6817L23.9217 51.3754V31.4871L37.1893 44.763L27.2259 54.6817Z" fill="#725BFF"/>
+        <path d="M67.0285 54.6817L70.2818 51.4263L70.3326 31.4871L57.0651 44.763L67.0285 54.6817Z" fill="#FF7480"/>
+        <path d="M47.1312 54.7101L37.1747 64.6729L47.1313 74.6357L57.0878 64.6729L47.1312 54.7101Z" fill="#28E8A3"/>
+        <path d="M57.086 44.733L47.1294 54.6958L57.086 64.6586L67.0425 54.6958L57.086 44.733Z" fill="#FBCE13"/>
+        <path d="M37.1637 44.7508L27.2071 54.7136L37.1637 64.6764L47.1203 54.7136L37.1637 44.7508Z" fill="#11D9ED"/>
+        <path d="M85.4298 31.4871H70.2814V81.7928H85.4298V31.4871Z" fill="#DCE4EF"/>
+        <path d="M23.9217 31.4871H8.77318V81.7928H23.9215L23.9217 31.4871Z" fill="#DCE4EF"/>
+      </svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);letter-spacing:.06em;text-transform:uppercase;">Marta Torre</span>
+    </div>
+    <div class="ft-links">
+      <a href="https://martatorre.dev">martatorre.dev</a>
+      <a href="mailto:hola@martatorre.dev">hola@martatorre.dev</a>
+    </div>
+  </div>
+  <div class="ft-right">
+    <strong>Auditoría técnica · yourspanishhub.com</strong><br>
+    Generado el 16 de abril de 2026<br>
+    <div class="ft-disclaimer">Documento de trabajo interno · No distribuir sin revisar</div>
+  </div>
+</footer>
+
+<script>
+// ── PIXEL ANIMATION (matching martatorre.dev style) ──
+const COLORS = ['#6666ff','#6666ff','#6666ff','#33ccff','#33ff99','#ff9999','#ffcc00','#6655cc','#4433bb'];
+const BG = '#000033';
+
+function drawPixels(canvasId, density, animate) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 980;
+  const H = canvas.height;
+  canvas.width = W;
+
+  const SIZE = 6;
+  const COLS = Math.floor(W / SIZE);
+  const ROWS = Math.floor(H / SIZE);
+
+  let pixels = [];
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      if (Math.random() < density) {
+        pixels.push({
+          x: c * SIZE,
+          y: r * SIZE,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          opacity: 0.15 + Math.random() * 0.65,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.008 + Math.random() * 0.02
+        });
+      }
+    }
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pixels) {
+      const alpha = animate
+        ? p.opacity * (0.5 + 0.5 * Math.sin(t * p.speed + p.phase))
+        : p.opacity;
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, SIZE - 1, SIZE - 1);
+    }
+    ctx.globalAlpha = 1;
+    if (animate) requestAnimationFrame(draw);
+  }
+
+  if (animate) {
+    let start = null;
+    function loop(ts) {
+      if (!start) start = ts;
+      draw(ts - start);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  } else {
+    draw(0);
+  }
+}
+
+window.addEventListener('load', () => {
+  drawPixels('pixel-canvas-top', 0.18, false);
+  drawPixels('pixel-canvas-bot', 0.18, false);
+  drawPixels('pixel-canvas-footer', 0.12, false);
+});
+
+window.addEventListener('resize', () => {
+  drawPixels('pixel-canvas-top', 0.18, false);
+  drawPixels('pixel-canvas-bot', 0.18, false);
+  drawPixels('pixel-canvas-footer', 0.12, false);
+});
+</script>
+
+</body>
+</html>
